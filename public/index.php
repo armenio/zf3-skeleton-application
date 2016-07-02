@@ -1,5 +1,16 @@
 <?php
 
+if( ! defined('ROOT_PATH') ){
+    $arrUri = explode('/public/', $_SERVER['REQUEST_URI'], 2);
+
+    if( mb_strtoupper($_SERVER['REQUEST_METHOD']) !== 'GET' ){
+        unset($arrUri[1]);
+    }
+    
+    header(sprintf('Location: %s', implode('/', $arrUri)));
+    exit();
+}
+
 use Zend\Mvc\Application;
 use Zend\Stdlib\ArrayUtils;
 
